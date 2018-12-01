@@ -9,4 +9,22 @@ func IsFirstCardValueBigger(card1 *PokerCard,card2 *PokerCard) bool{
 	}
 }
 
+func GetBigCard(card1 *PokerCard,card2 *PokerCard)*PokerCard{
+	if IsFirstCardValueBigger(card1,card2){
+		return card1
+	}else{
+		return card2
+	}
+}
+
+func GetSmallCard(card1 *PokerCard,card2 *PokerCard)*PokerCard{
+	if IsFirstCardValueBigger(card1,card2){
+		return card2
+	}else{
+		return card1
+	}
+}
+
+
+
 

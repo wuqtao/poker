@@ -13,11 +13,11 @@ func (deck PokerDeck) GetCard(index int) *PokerCard{
 func (deck PokerDeck) CountCards() int{
 	return len(deck.cards)
 }
-//获取所有的扑克牌
-func (deck PokerDeck) GetCards() []PokerCard{
+//获取该deck中的所有牌
+func (deck PokerDeck) GetAllCards() []PokerCard{
 	return deck.cards[:]
 }
-//获取所有的扑克牌
+//将pokerdeck转换为pokerset
 func (deck PokerDeck) ToPokerSet() PokerSet{
 	set := NewPokerSet()
 	for i,_ := range deck.cards{

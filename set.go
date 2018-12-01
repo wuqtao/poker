@@ -21,7 +21,7 @@ func (set PokerSet)AddPokers(cards PokerSet) PokerSet{
 }
 //检查给定的索引是否存在
 func (set PokerSet)checkIndex(indexs []int) error{
-	setLen := set.GetLength()
+	setLen := set.CountCards()
 	for _,index := range indexs{
 		if index >= setLen{
 			return errors.New("给定的索引超过扑克集的长度")
@@ -118,7 +118,7 @@ func (set PokerSet)GetPokerIndexs(pokers PokerSet) ([]int,error){
 	return indexs,nil
 }
 
-func (set PokerSet) GetLength() int{
+func (set PokerSet) CountCards() int{
 	return len(set)
 }
 
@@ -133,10 +133,11 @@ func (set PokerSet)SortDesc(){
 func (set PokerSet) HasSameValueCard(s PokerSet) bool{
 	for _,card1 := range set{
 		for _,card2 := range s{
-			if card1 == card2{
+			if card1.cardValue == card2.cardValue{
 				return true
 			}
 		}
 	}
 	return false
 }
+

@@ -53,15 +53,15 @@ type PokerCard struct {
 	cardSuit string			//card花色
 	cardName string			//card显示的字符
 }
-
+//获取扑克牌的值
 func (card PokerCard)GetValue() int{
 	return card.cardValue
 }
-
+//获取扑克牌的花色
 func (card PokerCard)GetSuit() string{
 	return card.cardSuit
 }
-
+//获取扑克牌的名字
 func (card PokerCard)GetCardName() string{
 	return card.cardName
 }

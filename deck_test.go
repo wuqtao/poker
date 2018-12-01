@@ -9,7 +9,7 @@ func Test_Deck(t *testing.T){
 	dec2 := CreateDeck()
 
 	tempCard := dec1.GetCard(0)
-	for i,_ := range dec1.GetCards(){
+	for i,_ := range dec1.ToPokerSet(){
 		if i != 0{
 			if dec1.GetCard(i).GetValue() == tempCard.GetValue() &&
 				dec1.GetCard(i).GetCardName() == tempCard.GetCardName() &&
@@ -26,5 +26,18 @@ func Test_Deck(t *testing.T){
 			dec1.GetCard(i).GetSuit() != dec2.GetCard(i).GetSuit(){
 				t.Error("同一索引扑克牌值不一致")
 		}
+	}
+}
+
+func TestPokerDeck_ToPokerSet(t *testing.T) {
+	set := CreateDeck().ToPokerSet()
+	if set[0].cardValue != CARD_VALUE_THREE || set[4].cardValue != CARD_VALUE_FOUR{
+		t.Error("TestPokerDeck_ToPokerSet err")
+	}
+}
+
+func TestPokerDeck_CountCards(t *testing.T) {
+	if CreateDeck().CountCards() != 54{
+		t.Error("TestPokerDeck_CountCards err")
 	}
 }

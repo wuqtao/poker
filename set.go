@@ -117,17 +117,17 @@ func (set PokerSet)GetPokerIndexs(pokers PokerSet) ([]int,error){
 	}
 	return indexs,nil
 }
-
+//计数扑克集中牌的数量
 func (set PokerSet) CountCards() int{
 	return len(set)
 }
-
+//对扑克集中的牌，根据value大小从小到大排序
 func (set PokerSet)SortAsc(){
-	SortAsc(set)
+	BubbleSortCardsMin2Max(set, IsFirstCardValueBigger)
 }
-
+//对扑克集中的牌，根据value大小从大到小排序
 func (set PokerSet)SortDesc(){
-	SortDesc(set)
+	BubbleSortCardsMax2Min(set, IsFirstCardValueBigger)
 }
 //检测是否有相同值的扑克牌
 func (set PokerSet) HasSameValueCard(s PokerSet) bool{
@@ -140,4 +140,82 @@ func (set PokerSet) HasSameValueCard(s PokerSet) bool{
 	}
 	return false
 }
+//分析一组牌中，各值牌的数量,返回map[cardValue]num
+func (set PokerSet) AnalyzeEachCardValueNum() map[int]int{
+	cardMap := make(map[int]int)
 
+	if len(set) == 0 {
+		return nil
+	}
+
+	for _,card := range set {
+		_,ok := cardMap[card.GetValue()]
+		if ok {
+			cardMap[card.GetValue()]++
+		}else{
+			cardMap[card.GetValue()] = 1
+		}
+	}
+
+	return cardMap
+}
+//分析一组牌中，各花色牌的数量,返回map[CardSuit]num
+func (set PokerSet) AnalyzeEachCardSuitNum() map[string]int{
+	cardMap := make(map[string]int)
+
+	if len(set) == 0 {
+		return nil
+	}
+
+	for _,card := range set {
+		_,ok := cardMap[card.GetSuit()]
+		if ok {
+			cardMap[card.GetSuit()]++
+		}else{
+			cardMap[card.GetSuit()] = 1
+		}
+	}
+
+	return cardMap
+}
+
+//判断一组牌中，不同数字的数量是否相同
+func (set PokerSet) IsUnsameCardNumSame() bool{
+	numMap := make(map[int]int)
+	for _,v := range set{
+		_,ok := numMap[v.GetValue()]
+		if ok {
+			numMap[v.GetValue()]++
+		}else{
+			numMap[v.GetValue()] = 1
+		}
+	}
+	temp := 0
+	index := 1
+	for _,v:= range numMap{
+		if index == 1{
+			temp = v
+			index++
+		}else{
+			if temp != v{
+				return false
+			}
+		}
+	}
+	return true
+}
+
+//判断一组牌中，给定索引的牌是否一样大小
+func (set PokerSet)IsAllCardSame(cardIndexs []int) bool{
+	temp := -1
+	for i,v:= range cardIndexs{
+		if i == 0{
+			temp = set[v].GetValue()
+		}else{
+			if temp != set[v].GetValue(){
+				return false
+			}
+		}
+	}
+	return true
+}

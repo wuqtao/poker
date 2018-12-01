@@ -125,3 +125,84 @@ func TestPokerSet_ReplacePoker(t *testing.T) {
 	}
 }
 
+func TestCheckEachCardNum(t *testing.T) {
+	set1 := PokerSet{set[0],set[1],set[2],set[3],
+		set[4],set[5],set[6],
+		set[8],set[9],
+		set[12]}
+
+	cardNum := set1.AnalyzeEachCardValueNum()
+
+	if cardNum[set[0].GetValue()] != 4 ||
+		cardNum[set[4].GetValue()] != 3 ||
+		cardNum[set[8].GetValue()] != 2 ||
+		cardNum[set[12].GetValue()] != 1{
+		t.Error("TestCheckEachCardNum err")
+	}
+
+}
+
+func TestIsUnsameCardNumSame(t *testing.T) {
+	set1 := PokerSet{set[0],set[1],set[2],set[3],
+		set[4],set[5],set[6],
+		set[8],set[9],
+		set[12]}
+
+	if set1.IsUnsameCardNumSame(){
+		t.Error("TestIsUnsameCardNumSame err")
+	}
+
+	set2 := PokerSet{set[0],set[3],
+		set[4],set[5],set[6],
+		set[8],set[9],
+		set[12]}
+
+	if set2.IsUnsameCardNumSame(){
+		t.Error("TestIsUnsameCardNumSame err")
+	}
+
+	set3 := PokerSet{set[0],set[3],
+		set[4],set[6],
+		set[8],set[9],
+		set[12],set[13]}
+
+	if !set3.IsUnsameCardNumSame(){
+		t.Error("TestIsUnsameCardNumSame err")
+	}
+
+	set4 := PokerSet{set[0],
+		set[4],
+		set[8],
+		set[12],}
+
+	if !set4.IsUnsameCardNumSame(){
+		t.Error("TestIsUnsameCardNumSame err")
+	}
+
+
+}
+
+func TestIsCardSame(t *testing.T) {
+	set1 := PokerSet{set[0],set[1],set[2],set[3],
+		set[4],set[5],set[6],
+		set[8],set[9],
+		set[12]}
+
+
+	if !set1.IsAllCardSame([]int{0,1,2,3}){
+		t.Error("TestIsCardSame err")
+	}
+
+	if !set1.IsAllCardSame([]int{4,5,6,}){
+		t.Error("TestIsCardSame err")
+	}
+
+	if set1.IsAllCardSame([]int{0,1,5,6}){
+		t.Error("TestIsCardSame err")
+	}
+
+	if set1.IsAllCardSame([]int{0,1,5,6,7,8}){
+		t.Error("TestIsCardSame err")
+	}
+}
+

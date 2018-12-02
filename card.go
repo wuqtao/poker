@@ -49,21 +49,21 @@ const(
 )
 //定义扑克牌
 type PokerCard struct {
-	cardValue int			//card值用于排序比较
-	cardSuit string			//card花色
-	cardName string			//card显示的字符
+	CardValue int    //card值用于排序比较
+	CardSuit  string //card花色
+	CardName  string //card显示的字符
 }
 //获取扑克牌的值
 func (card PokerCard)GetValue() int{
-	return card.cardValue
+	return card.CardValue
 }
 //获取扑克牌的花色
 func (card PokerCard)GetSuit() string{
-	return card.cardSuit
+	return card.CardSuit
 }
 //获取扑克牌的名字
 func (card PokerCard)GetCardName() string{
-	return card.cardName
+	return card.CardName
 }
 
 

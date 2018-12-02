@@ -133,14 +133,14 @@ func (set PokerSet)SortDesc(){
 func (set PokerSet) HasSameValueCard(s PokerSet) bool{
 	for _,card1 := range set{
 		for _,card2 := range s{
-			if card1.cardValue == card2.cardValue{
+			if card1.CardValue == card2.CardValue {
 				return true
 			}
 		}
 	}
 	return false
 }
-//分析一组牌中，各值牌的数量,返回map[cardValue]num
+//分析一组牌中，各值牌的数量,返回map[CardValue]num
 func (set PokerSet) AnalyzeEachCardValueNum() map[int]int{
 	cardMap := make(map[int]int)
 

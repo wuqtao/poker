@@ -12,22 +12,22 @@ func init(){
 
 
 func TestGetBigCard(t *testing.T) {
-	if set[4].cardValue != GetBigCard(set[4],set[0]).cardValue{
+	if set[4].CardValue != GetBigCard(set[4],set[0]).CardValue {
 		t.Error("TestGetBigCard err")
 	}
 
-	if set[4].cardValue != GetBigCard(set[0],set[4]).cardValue{
+	if set[4].CardValue != GetBigCard(set[0],set[4]).CardValue {
 		t.Error("TestGetBigCard err")
 	}
 
 }
 
 func TestGetSmallCard(t *testing.T) {
-	if set[0].cardValue != GetSmallCard(set[4],set[0]).cardValue{
+	if set[0].CardValue != GetSmallCard(set[4],set[0]).CardValue {
 		t.Error("TestGetSmallCard err")
 	}
 
-	if set[0].cardValue != GetSmallCard(set[0],set[4]).cardValue{
+	if set[0].CardValue != GetSmallCard(set[0],set[4]).CardValue {
 		t.Error("TestGetSmallCard err")
 	}
 }

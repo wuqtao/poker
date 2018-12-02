@@ -31,7 +31,7 @@ func Test_Deck(t *testing.T){
 
 func TestPokerDeck_ToPokerSet(t *testing.T) {
 	set := CreateDeck().ToPokerSet()
-	if set[0].cardValue != CARD_VALUE_THREE || set[4].cardValue != CARD_VALUE_FOUR{
+	if set[0].CardValue != CARD_VALUE_THREE || set[4].CardValue != CARD_VALUE_FOUR{
 		t.Error("TestPokerDeck_ToPokerSet err")
 	}
 }
